@@ -12,6 +12,5 @@ class Solution:
             
             num_map[nums[idx]] = idx
 
-        return []
         
         
