@@ -3,10 +3,10 @@ class Solution:
         hash_set = set()
 
         for el in nums:
-            if el not in hash_set:
-                hash_set.add(el)
-            else:
+            if el in hash_set:
                 return True
+
+            hash_set.add(el)
 
         return False
 
