@@ -1,22 +1,13 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        cities = {"a": [], "b": []}
+        startCities, endCities = set(), set()
 
         for path in paths:
-            cityA = path[0]
-            cityB = path[1]
+            startCities.add(path[0])
+            endCities.add(path[1])
 
-
-            cities["a"].append(cityA)
-            cities["b"].append(cityB)
-
-
-            if cityB in cities["a"]:
-                cities["b"].remove(cityB)
-            if cityA in cities["b"]:
-                cities["b"].remove(cityA)
-    
-        return cities["b"][0]
-
-
+        for city in endCities:
+            if city not in startCities:
+                return city
+        
         
