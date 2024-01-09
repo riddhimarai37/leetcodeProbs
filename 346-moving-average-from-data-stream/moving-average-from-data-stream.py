@@ -1,27 +1,48 @@
+# working solution but not optimized
+# class MovingAverage:
+
+#     def __init__(self, size: int):
+#         self.stream = []
+#         self.size = size
+        
+#     def next(self, val: int) -> float:
+#         self.stream.append(val)
+        
+#         if len(self.stream) < self.size:
+#             avg = 0
+#             for x in self.stream:
+#                 avg += x
+#             avg /= len(self.stream)
+#             return avg
+#         else:
+#             pt = len(self.stream)
+#             avg = 0
+#             for x in range(pt-self.size, pt):
+#                 avg += self.stream[x]
+#             avg /= self.size
+#             return avg
+
+from collections import deque
 class MovingAverage:
-
     def __init__(self, size: int):
-        self.stream = []
-        self.size = size
-        
+        """
+        Initialize your data structure here.
+        """
+        self.length = 0
+        self.max = size
+        self.sum = 0
+        self.queue = deque()
+
     def next(self, val: int) -> float:
-        self.stream.append(val)
-        
-        if len(self.stream) < self.size:
-            avg = 0
-            for x in self.stream:
-                avg += x
-            avg /= len(self.stream)
-            return avg
+        if self.length < self.max:
+            self.length +=1
+            self.queue.append(val)
+            self.sum += val
         else:
-            pt = len(self.stream)
-            avg = 0
-            for x in range(pt-self.size, pt):
-                avg += self.stream[x]
-            avg /= self.size
-            return avg
-
-
+            self.sum -= self.queue.popleft()
+            self.queue.append(val)
+            self.sum += val
+        return self.sum/self.length
 
         
 
