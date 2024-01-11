@@ -1,26 +1,41 @@
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t): 
-            return False
+# class Solution:
+#     def isAnagram(self, s: str, t: str) -> bool:
+#         if len(s) != len(t): 
+#             return False
 
-        s_counter = {}
-        t_counter = {}  
-        idx = 0
+#         s_counter = {}
+#         t_counter = {}  
+#         idx = 0
 
-        def increment_or_add(idx, str, counter):
-            if str[idx] in counter: 
-                counter[str[idx]] += 1
-            else: 
-                counter[str[idx]] = 0
+#         def increment_or_add(idx, str, counter):
+#             if str[idx] in counter: 
+#                 counter[str[idx]] += 1
+#             else: 
+#                 counter[str[idx]] = 0
 
                 
-        while idx < len(s):
-            increment_or_add(idx, s, s_counter)
-            increment_or_add(idx, t, t_counter)
-            idx += 1
+#         while idx < len(s):
+#             increment_or_add(idx, s, s_counter)
+#             increment_or_add(idx, t, t_counter)
+#             idx += 1
 
-        return True if s_counter == t_counter else False
+#         return True if s_counter == t_counter else False
 
+
+# neetcode solution
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        count_S, count_T = {}, {}
+
+        for i in range(0, len(s)):
+            count_S[s[i]] = 1 + count_S.get(s[i],0)
+            count_T[t[i]] = 1 + count_T.get(t[i],0)
+
+        return count_S == count_T
 
 
         
