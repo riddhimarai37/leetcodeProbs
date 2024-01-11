@@ -1,22 +1,20 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        hash_set = set()
+        distinct_nums = set()
 
-        for el in nums:
-            if el in hash_set:
-                return True
+        for curr in nums:
+            if curr not in distinct_nums:
+                distinct_nums.add(curr)
 
-            hash_set.add(el)
-
-        return False
+        return False if len(nums) == len(distinct_nums) else True
 
 
-        # num_dict = {}
+        nums = [1,2,3,1]
+        print(containsDuplicate(self,nums))
 
-        # for el in nums:
-        #     if el not in num_dict:
-        #         num_dict[el] = 1
-        #     else:
-        #         return True
+        nums = [1,2,3]
+        print(containsDuplicate(self,nums))
+    
+        nums = [3]
+        print(containsDuplicate(self,nums))
 
-        # return False
