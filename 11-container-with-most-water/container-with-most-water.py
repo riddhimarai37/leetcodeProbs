@@ -13,16 +13,12 @@ class Solution:
             length = min(left_l, right_l)
             width = right - left
 
-            print(length * width)
             maxArea = max(maxArea, length * width)
-            if left_l < right_l: 
+            if left_l <= right_l: 
                 left += 1
-            elif left_l > right_l:
-                right -=1
             else:
-                left += 1
                 right -=1
-
+                
         return maxArea 
             
 
