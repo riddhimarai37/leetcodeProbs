@@ -8,17 +8,13 @@ class Solution:
         maxArea = 0
 
         while left < right:
-            left_l = height[left]
-            right_l = height[right]
-            length = min(left_l, right_l)
-            width = right - left
-
-            maxArea = max(maxArea, length * width)
-            if left_l <= right_l: 
+            area = (min(height[left], height[right]) * (right-left))
+            maxArea = max(maxArea, area)
+            if height[left] <= height[right]: 
                 left += 1
             else:
                 right -=1
-                
+
         return maxArea 
             
 
