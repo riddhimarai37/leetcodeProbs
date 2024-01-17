@@ -4,29 +4,48 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# class Solution:
+#     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+#         if not root or (not root.left and not root.right):
+#             return root
+#         elif not root.left:
+#             root.left = self.invertTree(root.right)
+#             root.right = None
+#             return root
+#         elif not root.right:
+#             root.right = self.invertTree(root.left)
+#             root.left = None
+#             return root 
+
+#         left = root.left
+#         right = root.right
+        
+#         root.left = right
+#         root.right = left
+
+#         self.invertTree(root.left)
+#         self.invertTree(root.right)
+
+#         return root
+
+
+# cleaner recursive solution
+
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root or (not root.left and not root.right):
-            return root
-        elif not root.left:
-            root.left = self.invertTree(root.right)
-            root.right = None
-            return root
-        elif not root.right:
-            root.right = self.invertTree(root.left)
-            root.left = None
-            return root 
+        if not root: 
+            return None
 
-        left = root.left
-        right = root.right
-        
-        root.left = right
-        root.right = left
+        #swap the children
+        root.left, root.right = root.right, root.left
 
+        #make 2 recrusive calls
         self.invertTree(root.left)
         self.invertTree(root.right)
-
         return root
+
+
+
 
 
 
