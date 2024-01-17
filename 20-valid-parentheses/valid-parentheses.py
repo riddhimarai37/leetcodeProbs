@@ -20,46 +20,29 @@ class Solution:
         return True if len(stack) == 0 else False
 
 
+# neetcode soln 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Solution:
+    def isValid(self, s: str) -> bool:
+        Map = {")": "(", "]": "[", "}": "{"}
         stack = []
 
-        for char in s:
-            if char in ["(", "{", "["]:
-                stack.append(char)
-            else:
-                if not stack:
-                    return False
-                
-                curr_char = stack.pop()
+        for c in s:
+            if c not in Map: # c is an open parentheses 
+                stack.append(c)
+                continue
+            if not stack or stack[-1] != Map[c]: # not an open parantheses and nothing to pop from stack
+                return False
+            stack.pop()
 
-                if curr_char == "(":
-                    if char != ")":
-                        return False
-                elif curr_char == "{":
-                    if char != "}":
-                        return False
-                elif curr_char == "[":
-                    if char != "]":
-                        return False
-        
-        if stack:
-            return False
+        return not stack
 
-        return True
 
-        
+
+
+
+
+
+
+
 
