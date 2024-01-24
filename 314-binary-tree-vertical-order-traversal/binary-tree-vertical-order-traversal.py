@@ -22,7 +22,7 @@ class Solution:
             if node.right:
                 queue.append((node.right, col + 1))
 
-        result = [cols[key] for key in sorted(cols.keys())]
+        result = [cols[key] for key in range(min(cols), max(cols)+1)]
         return result
             
 
