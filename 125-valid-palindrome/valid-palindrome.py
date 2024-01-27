@@ -4,16 +4,15 @@ class Solution:
         right = len(s) - 1
 
         while left < right:
-            while not s[left].isalnum() and left < right:
-                left += 1
-            while not s[right].isalnum() and left < right:
-                right -= 1
-
-            if s[left].lower() != s[right].lower():
+            if s[left].isalnum() and s[right].isalnum() and s[left].lower() != s[right].lower():
                 return False
-                
-            left += 1
-            right -=1
+            elif not s[left].isalnum(): 
+                left += 1
+            elif not s[right].isalnum(): 
+                right -=1 
+            else:
+                left += 1
+                right -=1
 
         return True
 
