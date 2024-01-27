@@ -1,5 +1,41 @@
-# class Solution:
-#     def isPalindrome(self, s: str) -> bool:
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        left = 0 
+        right = len(s) - 1
+
+        while left < right:
+            if s[left].isalnum() and s[right].isalnum() and s[left].lower() != s[right].lower():
+                return False
+            elif not s[left].isalnum(): 
+                left += 1
+            elif not s[right].isalnum(): 
+                right -=1 
+            else:
+                left += 1
+                right -=1
+
+        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #         if len(s) < 2: return True
 
 #         s = s.lower()
@@ -32,30 +68,30 @@
 #                 new += a.lower()
 #         return (new == new[::-1])
 
-# neetcode solution #2 -- uses less space but a little less efficient
+# # neetcode solution #2 -- uses less space but a little less efficient
 
-class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        left = 0
-        right = len(s) - 1
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         left = 0
+#         right = len(s) - 1
 
-        while left < right:
-            while left < right and not self.alphaNum(s[left]):
-                left += 1
-            while right > left and not self.alphaNum(s[right]) :
-                right -= 1
+#         while left < right:
+#             while left < right and not self.alphaNum(s[left]):
+#                 left += 1
+#             while right > left and not self.alphaNum(s[right]) :
+#                 right -= 1
 
-            if s[left].lower() != s[right].lower():
-                return False
+#             if s[left].lower() != s[right].lower():
+#                 return False
 
-            left += 1
-            right -=1
+#             left += 1
+#             right -=1
 
-        return True
+#         return True
 
 
 
-    def alphaNum(self, c) -> bool:
-        return ((ord('a') <= ord(c) <= ord('z')) or
-                (ord('A') <= ord(c) <= ord('Z')) or 
-                (ord('0') <= ord(c) <= ord('9')))
+#     def alphaNum(self, c) -> bool:
+#         return ((ord('a') <= ord(c) <= ord('z')) or
+#                 (ord('A') <= ord(c) <= ord('Z')) or 
+#                 (ord('0') <= ord(c) <= ord('9')))
