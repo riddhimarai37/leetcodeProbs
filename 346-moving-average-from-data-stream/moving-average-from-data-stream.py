@@ -22,27 +22,44 @@
 #             avg /= self.size
 #             return avg
 
-from collections import deque
+
+
+
+
+
+# example: size = 2; next = 1 --> 1, next = 3 --> 4, next =5 --> 4
+
+
 class MovingAverage:
     def __init__(self, size: int):
         """
         Initialize your data structure here.
         """
-        self.length = 0
-        self.max = size
-        self.sum = 0
-        self.queue = deque()
+        self.queue = collections.deque()
+        self.size = size
+        self.curr_sum = 0
+
+
 
     def next(self, val: int) -> float:
-        if self.length < self.max:
-            self.length +=1
+        avg = 0
+        if len(self.queue) < self.size:
             self.queue.append(val)
-            self.sum += val
+            self.curr_sum += val
+            avg = self.curr_sum/len(self.queue)
         else:
-            self.sum -= self.queue.popleft()
+            self.curr_sum -= self.queue.popleft()
             self.queue.append(val)
-            self.sum += val
-        return self.sum/self.length
+            self.curr_sum += val
+            avg = self.curr_sum/len(self.queue)
+        return avg
+
+            
+            
+
+
+
+
 
         
 
@@ -50,3 +67,22 @@ class MovingAverage:
 # Your MovingAverage object will be instantiated and called as such:
 # obj = MovingAverage(size)
 # param_1 = obj.next(val)
+
+
+# from collectionsn import dequeue
+# init
+        # self.length = 0
+        # self.max = size
+        # self.sum = 0
+        # self.queue = deque()
+
+# next 
+        # if self.length < self.max:
+        #     self.length +=1
+        #     self.queue.append(val)
+        #     self.sum += val
+        # else:
+        #     self.sum -= self.queue.popleft()
+        #     self.queue.append(val)
+        #     self.sum += val
+        # return self.sum/self.length
