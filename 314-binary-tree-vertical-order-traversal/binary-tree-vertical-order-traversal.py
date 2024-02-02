@@ -4,6 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# [3,9,20,null,null, 15, 7]
+# return [[9], [3,15] , [20] , [7]]
+
+# cols = {col_idx}
+# res  = []
+# dfs(node, curr_col, minCol, maxCol):
+# if not node: return 
+# cols[curr_col] = node.val
+# dfs (node.left, curr_col - 1, minCol, maxCol)
+# dfs (node.right, curr_col + 1, minCol, maxCol)
+# dfs(root, 0, float(-inf), float(inf))
+# go through the dictionary through the ranges of minCol and maxCol and append the values to results
+
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
@@ -26,4 +40,5 @@ class Solution:
         return result
             
 
+        # time O(N) space O(N)
             
