@@ -28,27 +28,6 @@ class Solution:
                 pt2 += 1
 
         return pt1 == len(word) and pt2 == len(abbr)
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         # abbr_pt = word_pt = 0
