@@ -16,20 +16,20 @@ class Solution:
         q_ptr = q
 
         while p_ptr != q_ptr:
-            if p_ptr.parent:
+            if p_ptr:
                 p_ptr = p_ptr.parent
             else:
                 p_ptr = q
-
-            if q_ptr.parent:
+            if q_ptr:
                 q_ptr = q_ptr.parent
             else:
                 q_ptr = p
 
+
         return p_ptr
+        
 
-
-
+            
 
 
 
