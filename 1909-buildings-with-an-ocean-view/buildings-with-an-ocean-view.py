@@ -1,6 +1,35 @@
 class Solution:
-    # traverse the array from the right and keep track of the current max height 
+
     def findBuildings(self, heights: List[int]) -> List[int]:
+        max_height = 0 
+        queue = collections.deque([])
+
+        for idx in range(len(heights)- 1, -1, -1):
+            cur_height = heights[idx]
+            if cur_height > max_height:
+                queue.appendleft(idx)
+                max_height = cur_height
+
+        return list(queue)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # max_height = 0
         # res = collections.deque([])
 
