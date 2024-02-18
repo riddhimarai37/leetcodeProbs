@@ -1,30 +1,54 @@
 
-# iterate through order 
-# check if the curr char occurs in s at all
-# if true: add that char to result 
-
-# iterate through s:
-# if the current char is in res: skip 
-# else: add it to res 
-
 
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        count = {}
+        s_counter = collections.Counter(s)
         res = ""
 
-        for c in s:
-            count[c] = 1 + count.get(c, 0)
-
         for c in order:
-            if c in count:
-                res += c * count[c]
-                del count[c]
+            if c in s_counter.keys():
+                res += c * s_counter[c]
+                del s_counter[c]
 
-        for c in count:
-            res += c * count[c]
-
+        for c, count in s_counter.items():
+            res += c * count
+            
         return res
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # count = {}
+        # res = ""
+
+        # for c in s:
+        #     count[c] = 1 + count.get(c, 0)
+
+        # for c in order:
+        #     if c in count:
+        #         res += c * count[c]
+        #         del count[c]
+
+        # for c in count:
+        #     res += c * count[c]
+
+        # return res
         
         
 
