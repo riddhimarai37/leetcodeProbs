@@ -7,42 +7,85 @@ class Node:
         self.right = right
 """
 
-# have a head node
-# start a dfs on root: process in order of left --> root --> right 
-
 class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        # recursive solution
+
         if not root:
-            return None
+            return root
 
-        self.first = None
-        self.last = None
+        # current and temp node 
+        head = temp = Node()
 
-        self.inorder_link(root)
+        def helper(node):
+            nonlocal head
+            if not node:
+                return 
+            
+            # traverse through left subtree
+            helper(node.left)
+            # perform linking on current node
+            head.right = node
+            node.left = head
+            head = node
+            # traverse through right subtree
+            helper(node.right)
 
-        # make list circular 
-        self.first.left = self.last
-        self.last.right = self.first
-
-        return self.first
-
-    def inorder_link(self, node):
-        if node:
-            self.inorder_link(node.left)
+        helper(root)
         
-            if not self.last:
-                self.first = node
-            else:
-                node.left = self.last
-                self.last.right = node
+        temp.right.left = head
+        head.right = temp.right
 
-            self.last = node
+        return temp.right
 
-            self.inorder_link(node.right)
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #     if not root:
+    #         return None
+
+    #     self.first = None
+    #     self.last = None
+
+    #     self.inorder_link(root)
+
+    #     # make list circular 
+    #     self.first.left = self.last
+    #     self.last.right = self.first
+
+    #     return self.first
+
+    # def inorder_link(self, node):
+    #     if node:
+    #         self.inorder_link(node.left)
+        
+    #         if not self.last:
+    #             self.first = node
+    #         else:
+    #             node.left = self.last
+    #             self.last.right = node
+
+    #         self.last = node
+
+    #         self.inorder_link(node.right)
 
 
     # time: O(N) 
-    # Space: inorder: O(1)
+    # Space: inorder: O(N) bc recursive stack
 
 
         
