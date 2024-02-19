@@ -1,33 +1,3 @@
-# working solution but not optimized
-# class MovingAverage:
-
-#     def __init__(self, size: int):
-#         self.stream = []
-#         self.size = size
-        
-#     def next(self, val: int) -> float:
-#         self.stream.append(val)
-        
-#         if len(self.stream) < self.size:
-#             avg = 0
-#             for x in self.stream:
-#                 avg += x
-#             avg /= len(self.stream)
-#             return avg
-#         else:
-#             pt = len(self.stream)
-#             avg = 0
-#             for x in range(pt-self.size, pt):
-#                 avg += self.stream[x]
-#             avg /= self.size
-#             return avg
-
-
-
-
-
-
-# example: size = 2; next = 1 --> 1, next = 3 --> 4, next =5 --> 4
 
 
 class MovingAverage:
@@ -35,24 +5,53 @@ class MovingAverage:
         """
         Initialize your data structure here.
         """
-        self.queue = collections.deque()
         self.size = size
-        self.curr_sum = 0
-
+        self.total_sum = 0
+        self.queue = collections.deque()
 
 
     def next(self, val: int) -> float:
-        avg = 0
-        if len(self.queue) < self.size:
-            self.queue.append(val)
-            self.curr_sum += val
-            avg = self.curr_sum/len(self.queue)
-        else:
-            self.curr_sum -= self.queue.popleft()
-            self.queue.append(val)
-            self.curr_sum += val
-            avg = self.curr_sum/len(self.queue)
-        return avg
+        if len(self.queue) == self.size:
+            remove = self.queue.popleft()
+            self.total_sum -= remove
+        self.total_sum += val
+        self.queue.append(val)
+        return self.total_sum/len(self.queue)
+            
+
+
+
+
+
+
+
+
+
+
+
+# init 
+
+        # self.queue = collections.deque()
+        # self.size = size
+        # self.curr_sum = 0
+
+
+
+
+
+
+#next
+        # avg = 0
+        # if len(self.queue) < self.size:
+        #     self.queue.append(val)
+        #     self.curr_sum += val
+        #     avg = self.curr_sum/len(self.queue)
+        # else:
+        #     self.curr_sum -= self.queue.popleft()
+        #     self.queue.append(val)
+        #     self.curr_sum += val
+        #     avg = self.curr_sum/len(self.queue)
+        # return avg
 
             
             
