@@ -7,88 +7,77 @@ class Node:
         self.right = right
 """
 
-class Solution:
-    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        # recursive solution
+# class Solution:
+#     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+#         # recursive solution
 
-        if not root:
-            return root
+#         if not root:
+#             return root
 
-        # current and temp node 
-        head = temp = Node()
+#         # current and temp node 
+#         head = temp = Node()
 
-        def helper(node):
-            nonlocal head
-            if not node:
-                return 
+#         def helper(node):
+#             nonlocal head
+#             if not node:
+#                 return 
             
-            # traverse through left subtree
-            helper(node.left)
-            # perform linking on current node
-            head.right = node
-            node.left = head
-            head = node
-            # traverse through right subtree
-            helper(node.right)
+#             # traverse through left subtree
+#             helper(node.left)
+#             # perform linking on current node
+#             head.right = node
+#             node.left = head
+#             head = node
+#             # traverse through right subtree
+#             helper(node.right)
 
-        helper(root)
+#         helper(root)
         
-        temp.right.left = head
-        head.right = temp.right
+#         # complete circularity 
+#         temp.right.left = head
+#         head.right = temp.right
 
-        return temp.right
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #     if not root:
-    #         return None
-
-    #     self.first = None
-    #     self.last = None
-
-    #     self.inorder_link(root)
-
-    #     # make list circular 
-    #     self.first.left = self.last
-    #     self.last.right = self.first
-
-    #     return self.first
-
-    # def inorder_link(self, node):
-    #     if node:
-    #         self.inorder_link(node.left)
-        
-    #         if not self.last:
-    #             self.first = node
-    #         else:
-    #             node.left = self.last
-    #             self.last.right = node
-
-    #         self.last = node
-
-    #         self.inorder_link(node.right)
+#         return temp.right
 
 
     # time: O(N) 
     # Space: inorder: O(N) bc recursive stack
 
 
-        
+
+
+class Solution:
+    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        #Iterate solution using a stack
+        if not root:
+            return None
+
+        stack = [root]
+        first = None
+        curr = root.left
+        last = None
+
+        while curr or stack:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
+                continue
+            if stack:
+                curr = stack.pop()
+                if not first:
+                    first = curr
+                if last:
+                    last.right = curr
+                    curr.left = last
+                last = curr
+                curr = curr.right 
+
+        first.left = last
+        last.right = first
+
+        return first
+
+
 
         
 
