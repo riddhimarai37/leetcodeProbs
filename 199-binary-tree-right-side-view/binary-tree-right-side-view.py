@@ -18,10 +18,8 @@ class Solution:
             if len(res) - 1 < row:
                 res.append(node.val)
 
-            if node.right:
-                dfs(node.right, row + 1)
-            if node.left:
-                dfs(node.left, row + 1)
+            dfs(node.right, row + 1)
+            dfs(node.left, row + 1)
 
             return res
 
