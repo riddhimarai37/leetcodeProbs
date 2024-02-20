@@ -4,34 +4,23 @@ class Solution:
     def groupStrings(self, strings: List[str]) -> List[List[str]]:
         dic = collections.defaultdict(list)
 
-        for idx, s in enumerate(strings):
-            if len(dic) == 0:
-                dic[s].append(s)
+        for string in strings:
+            if len(string) == 1:
+                dic[(-1,)].append(string) # difference is -1 add that as a tuple
                 continue
-            
-            equal = True
 
-            for key in dic.keys():
-                print(key, s)
-                if len(key) == len(s):
-                    equal = True
-                    diff = (ord(key[0]) - ord(s[0])) % 26
-                    i = 1
-                    while i < len(s):
-                        if (ord(key[i]) - ord(s[i])) % 26 != diff:
-                            equal = False
-                            break
-                        i += 1
-                    if equal:
-                        dic[key].append(s)
-                        break
-                else:
-                    equal = False
-            
-            if not equal:
-                dic[s].append(s)
+            char_diffs = []
+            i = 1
+            while i < len(string):
+                diff = (ord(string[i]) - ord(string[i-1])) % 26
+                char_diffs.append(diff)
+                i += 1
+
+            dic[tuple(char_diffs)].append(string)
 
         return list(dic.values())
+
+
 
 
                     
