@@ -1,20 +1,19 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        left = 0
-        right = len(nums) - 1
-        minVal = float("infinity")
+        low = 0
+        high = len(nums) - 1
 
-        while left < right:
-            mid = left + (right-left) // 2
-            minVal = min(minVal, nums[mid])
-            # min is in second half of array
-            if nums[right] < nums[mid]:
-                left = mid + 1
-            # min is in first half of array
-            else:
-                right = mid - 1
+        while low < high:
+            if nums[low] < nums[high]:
+                return nums[low]
 
-        return min(minVal, nums[left])
+            mid = low + (high-low) // 2
 
+            if nums[mid] < nums[low]:
+                high = mid 
+            elif nums[mid] > nums[high]:
+                low = mid + 1
+
+        return nums[low]
 
         
