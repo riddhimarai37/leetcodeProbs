@@ -4,13 +4,11 @@ class Solution:
         lowest = prices[0]
 
         for p in prices:
-            max_profit = max(p - lowest, max_profit)
             if p < lowest:
                 lowest = p
+            max_profit = max(max_profit, p - lowest)
 
         return max_profit 
-
-
 
 
 
