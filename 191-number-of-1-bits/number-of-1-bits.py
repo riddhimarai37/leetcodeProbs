@@ -1,9 +1,12 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        hammingWeight = 0
-        for c in bin(n)[2:]:
-            if c == '1':
-                hammingWeight += 1
-        return hammingWeight
+        res = 0
+        while n:
+            # see if last bit is 1
+            if n % 2 == 1:
+                res += 1
+            # move n down 1 bit
+            n = n >> 1
+        return res
 
         
