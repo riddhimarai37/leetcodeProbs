@@ -5,19 +5,18 @@ class Solution:
         right = len(height) - 1
 
         while left < right:
-            curr_area = (right - left) * min(height[left], height[right])
-            max_area = max(curr_area, max_area)
+            cur_area = min(height[left], height[right]) * (right - left)
+            max_area = max(max_area, cur_area)
 
-            if height[left] < height[right]:
-                left += 1
-            elif height[right] < height[left]:
+            if height[left] > height[right]:
                 right -= 1
+            elif height[right] > height[left]:
+                left += 1
             else:
                 left += 1
-                right -=1
+                right -= 1
 
         return max_area
-
 
 
 
@@ -57,4 +56,7 @@ class Solution:
         #         l +=1
 
         # return maxArea
+
+        # Time: O(N)
+        # Space: O(1)
 
