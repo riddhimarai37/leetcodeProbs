@@ -4,7 +4,6 @@ class Solution:
         left = 0 
         res = 0 
 
-
         # right pointer increments every time
         for right in range(len(s)):
             # while we keep getting repeating chars in window, remove from the left
@@ -15,6 +14,9 @@ class Solution:
             res = max(res, right - left + 1)
 
         return res
+
+
+        # # O(n) time and space
 
 
 
