@@ -6,18 +6,51 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if not head or not head.next: 
+        if not head or not head.next:
             return False
 
-        slow = fast = head
+        p1 = head
+        p2 = head.next
 
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
+        while p2 and p2.next:
+            if p1 == p2:
                 return True
-
+            
+            p1 = p1.next
+            p2 = p2.next.next
+            
         return False
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # if not head or not head.next: 
+        #     return False
+
+        # slow = fast = head
+
+        # while fast and fast.next:
+        #     slow = slow.next
+        #     fast = fast.next.next
+        #     if slow == fast:
+        #         return True
+
+        # return False
 
 
 
@@ -45,9 +78,11 @@ class Solution:
         #     slow = slow.next
         #     if fast == slow:
         #         return True
-
-
         # return False
+
+
+
+
         # # if not head:
         # #     return False
 
@@ -62,17 +97,5 @@ class Solution:
 
         # # return True
         
-        slow = head
-        fast = head
-
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                return True
-
-        return False
-
-
-
+     
 
