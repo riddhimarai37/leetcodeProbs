@@ -1,34 +1,39 @@
 class MyQueue:
 
     def __init__(self):
-        self.add_stack = []
-        self.pop_stack = []
+        self.stack1 = []
+        self.stack2 = []
+        
 
     def push(self, x: int) -> None:
-		# When we add to the queue, we want to add to the addStack
-		# if we previously popped, we want to move all items from the popStack to the addStack
-        while self.pop_stack:
-            self.add_stack.append(self.pop_stack.pop())
+        if not self.stack1:
+            self.stack1.append(x)
+        else:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
 
-        self.add_stack.append(x)
+            self.stack1.append(x)
+            while self.stack2:
+                self.stack1.append(self.stack2.pop())
+
+        print(self.stack1)
+            
 
     def pop(self) -> int:
-        while self.add_stack:
-            self.pop_stack.append(self.add_stack.pop())
-        return self.pop_stack.pop()
-
+        ret = self.stack1.pop()
+        return ret
+        
 
     def peek(self) -> int:
-        if self.pop_stack:
-            return self.pop_stack[-1]
-        return self.add_stack[0]
+        ret = self.stack1.pop()
+        self.stack1.append(ret)
+        return ret
         
 
     def empty(self) -> bool:
-        if not self.pop_stack and not self.add_stack:
-            return True
-        return False
-
+        if self.stack1 or self.stack2:
+            return False
+        return True
         
 
 
