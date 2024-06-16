@@ -6,8 +6,8 @@ class Solution:
         if isBadVersion(1):
             return 1
 
-        if isBadVersion(n) and not isBadVersion(n-1):
-            return n
+        # if isBadVersion(n) and not isBadVersion(n-1):
+        #     return n
 
         
         l = 1
