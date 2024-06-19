@@ -8,8 +8,8 @@ class Solution:
             if counter[c] % 2 == 0:
                 res += 2
 
-        for c in counter:
-            if counter[c] % 2 == 1:
+        for c in counter.values():
+            if c % 2 == 1:
                 res += 1
                 break
 
