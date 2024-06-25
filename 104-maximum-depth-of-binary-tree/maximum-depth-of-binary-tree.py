@@ -4,34 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-# recursive solution 
-# class Solution:
-#     def maxDepth(self, root: Optional[TreeNode]) -> int:
-#         if not root:
-#             return 0
-
-#         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
-
-
-# dfs solution 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        stack = [[root,1]]
-        res = 0
-
-        while stack:
-            node,depth = stack.pop()
-            if node: 
-                res = max(depth, res)
-                stack.append([node.left, depth + 1])
-                stack.append([node.right, depth + 1])
-
-        return res
-
-
-
-
-
-
         
+        def dfs(node, level):
+            if not node:
+                return 0
+
+            left = dfs(node.left, level + 1)
+            right = dfs(node.right, level + 1)
+
+            return 1 + max(left, right)
+
+        return dfs(root, 0)
+
+
+
+    
