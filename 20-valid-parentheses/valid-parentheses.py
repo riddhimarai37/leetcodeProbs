@@ -1,24 +1,31 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        open_bracks = ["(", "[", "{"]
         stack = []
-        open_paren = ['(', '{', '[']
 
         for c in s:
-            if c in open_paren:
+            if c in open_bracks:
                 stack.append(c)
-            else:
-                if not stack:
+            elif c in ["]", "}", ")"]:
+                if stack:
+                    popped = stack.pop()
+                else:
                     return False
 
-                popped = stack.pop()
-                if c == ')' and popped != '(':
+                if c == "]" and popped != "[":
                     return False
-                elif c == ']' and popped != '[':
+                elif c == ")" and popped != "(":
                     return False
-                elif c == '}' and popped != '{':
+                elif c == "}" and popped != "{":
                     return False
 
-        return False if stack else True
+        if stack:
+            return False
+
+        return True
+
+            
+
 
 
 
