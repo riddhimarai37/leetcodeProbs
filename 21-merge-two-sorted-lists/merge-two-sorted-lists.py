@@ -7,24 +7,23 @@
 # Iterative
 class Solution:
     def mergeTwoLists(self, list1: ListNode, list2: ListNode) -> ListNode:
-        temp = res = ListNode()
-
+        
+        dummy = node = ListNode()
         while list1 and list2:
             if list1.val < list2.val:
-                res.next = list1
-                res = res.next
+                node.next = list1
                 list1 = list1.next
             else:
-                res.next = list2
-                res = res.next
+                node.next = list2
                 list2 = list2.next
+            node = node.next
+        
+        node.next = list1 or list2
 
-        if list1:
-            res.next = list1
-        elif list2:
-            res.next = list2
+        return dummy.next
+            
 
-        return temp.next
+
 
 
 
