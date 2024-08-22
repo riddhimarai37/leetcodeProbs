@@ -1,26 +1,17 @@
-# example:
-#  [[1,3], [-2,2]] heap: [1,3]
-
-import math
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        heap  = []
+        heap = []
 
-        for cur in points:
-            # calculate distance from zero 
-            pow_val = math.pow(-cur[0],2) + math.pow(-cur[1],2)
-            dist  = math.sqrt(pow_val)
-            if len(heap) < k:
-                heapq.heappush(heap,[-1*dist,cur[0], cur[1]])
-            else:
-                heapq.heappushpop(heap, [-1*dist, cur[0],cur[1]])
-
-        res = []
-        for dist,row,col in heap:
-            res.append([row,col])
-
-        return res
-
-
-
+        for p in points:
+            x,y = p[0],p[1]
+            dist = -(x*x + y*y)
         
+            if len(heap) <  k:
+                heapq.heappush(heap, [dist, x,y])
+            else:
+                if heap[0][0] < dist:
+                    heapq.heappop(heap)
+                    heapq.heappush(heap,[dist,x,y])
+
+
+        return [(x,y) for (dist, x, y) in heap]
