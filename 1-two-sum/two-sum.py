@@ -1,13 +1,16 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        num_dict = {}
+        hash_set = {}
 
         for idx,n in enumerate(nums):
-            comp = target - n 
-            if comp in num_dict:
-                return [idx, num_dict[comp]]
+            comp = target - n
+            if comp in hash_set:
+                return [idx, hash_set[comp]]
+            hash_set[n] = idx
 
-            num_dict[n] = idx
+            
+
+
 
 
 
