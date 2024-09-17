@@ -7,10 +7,9 @@ class Solution:
             res[idx] = prefix
             prefix *= nums[idx]
 
-        print(res)
-        postfix = nums[-1]
+        postfix = 1
 
-        for idx in range(len(res) - 2, -1, -1):
+        for idx in range(len(res) - 1, -1, -1):
             res[idx] *= postfix
             postfix *= nums[idx] 
 
