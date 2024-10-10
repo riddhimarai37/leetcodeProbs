@@ -1,6 +1,6 @@
 class Solution:
     def groupAnagrams(self, strs):
-        res_dict = {}
+        res_dict = collections.defaultdict(list)
 
         for s in strs:
             count = [0] * 26
@@ -8,10 +8,7 @@ class Solution:
                 count[ord(c) - ord('a')] += 1
 
             count = tuple(count)
-            if count in res_dict:
-                res_dict[count].append(s)
-            else:
-                res_dict[count] = [s]
+            res_dict[count].append(s)
 
         return res_dict.values()
 
