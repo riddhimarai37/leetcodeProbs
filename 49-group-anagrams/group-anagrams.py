@@ -7,8 +7,7 @@ class Solution:
             for c in s:
                 count[ord(c) - ord('a')] += 1
 
-            count = tuple(count)
-            res_dict[count].append(s)
+            res_dict[tuple(count)].append(s)
 
         return res_dict.values()
 
