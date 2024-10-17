@@ -1,56 +1,54 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        num_set = set(nums)
-        longest = 0
+        set_nums = set(nums)
+        curr_max = 0
+        maximum = 0
 
-        while num_set:
-            curr = num_set.pop()
-            curr_seq = 1
-            up = curr + 1
-            down = curr - 1
+        for n in nums: 
+            curr_max = 1
+            if n-1 not in set_nums and n+1 in set_nums:
+                while n+1 in set_nums:
+                    curr_max += 1
+                    n +=1 
+            maximum = max(curr_max, maximum)
 
-            while up in num_set:
-                num_set.remove(up)
-                up += 1
-                curr_seq += 1
+            
+        return maximum
+            
 
-            while down in num_set:
-                num_set.remove(down)
-                down -= 1
-                curr_seq += 1
 
-            longest = max(longest, curr_seq)
 
-        return longest
 
-        # numSet = set(nums)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # set_nums = set(nums)
         # longest = 0
 
-        # while numSet:
-        #     curr = numSet.pop()
-        #     up, down = curr+1, curr-1
-        #     seq_len = 1
-
-        #     while up in numSet:
-        #         numSet.remove(up)
-        #         up += 1
-        #     seq_len += (up-curr-1)
-
-        #     while down in numSet:
-        #         numSet.remove(down)
-        #         down -= 1
-        #     seq_len += (curr-down-1)
-
-        #     longest = max(longest, seq_len)
+        # for n in set_nums:
+        #      # check if current number is start of a sequence 
+        #     if (n-1) not in set_nums:
+        #         length = 1
+        #         while n+length in set_nums:
+        #             length += 1
+        #         longest = max(longest, length)
 
         # return longest
+                    
 
+        # o(N) time o(N) space
+                
 
-
-        
-        
-
-
-
-        
+                
 
