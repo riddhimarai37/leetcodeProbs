@@ -6,7 +6,7 @@ class Solution:
 
         for n in nums: 
             curr_max = 1
-            if n-1 not in set_nums and n+1 in set_nums:
+            if n-1 not in set_nums:
                 while n+1 in set_nums:
                     curr_max += 1
                     n +=1 
