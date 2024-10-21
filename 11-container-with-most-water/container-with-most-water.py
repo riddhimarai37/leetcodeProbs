@@ -4,17 +4,14 @@ class Solution:
         r = len(height) - 1
         max_area = 0
 
-        while l <= r:
+        while l < r:
             curr_area = (r-l) * min(height[l], height[r])
             max_area = max(curr_area, max_area)
 
             if height[l] > height[r]:
                 r -= 1
-            elif height[r] > height[l]:
-                l += 1
             else:
                 l += 1
-                r -= 1
 
         return max_area
 
