@@ -1,18 +1,23 @@
 class Solution:
     def groupAnagrams(self, strs):
-        res_dict = collections.defaultdict(list)
+        anagram_map = {}
 
-        for s in strs:
+        for s in strs: 
+            # populate our count array
             count = [0] * 26
             for c in s:
                 count[ord(c) - ord('a')] += 1
 
-            res_dict[tuple(count)].append(s)
+            count = tuple(count)
 
-        return res_dict.values()
+            if count in anagram_map:
+                anagram_map[count].append(s)
+            else:
+                anagram_map[count] = [s]
 
+        return list(anagram_map.values())
 
-
+            
 
 
 
