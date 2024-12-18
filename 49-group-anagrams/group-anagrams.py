@@ -1,6 +1,6 @@
 class Solution:
     def groupAnagrams(self, strs):
-        anagram_map = {}
+        anagram_map = defaultdict(list)
 
         for s in strs: 
             # populate our count array
