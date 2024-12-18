@@ -7,13 +7,7 @@ class Solution:
             count = [0] * 26
             for c in s:
                 count[ord(c) - ord('a')] += 1
-
-            count = tuple(count)
-
-            if count in anagram_map:
-                anagram_map[count].append(s)
-            else:
-                anagram_map[count] = [s]
+            anagram_map[tuple(count)].append(s)
 
         return list(anagram_map.values())
 
