@@ -1,21 +1,16 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        open_paren = ['{', '(', '[']
+        mapping = {')': '(', '}': '{', ']':'['}
 
         for c in s: 
-            if c in open_paren: 
-                stack.append(c)
+            if c in mapping: 
+                if stack and stack[-1] == mapping[c]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                if not stack: return False
-                p = stack.pop()
-                match p:
-                    case '{':
-                        if c != '}': return False
-                    case '[':
-                        if c != ']': return False
-                    case '(':
-                        if c != ')': return False
+                stack.append(c)
 
         if stack:
             return False
