@@ -1,20 +1,21 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        low = 0
-        high = len(nums) - 1
+        l = 0
+        r = len(nums) - 1
 
-        while low < high:
-            mid = low + (high-low)//2
+        while l < r:
+            mid = l + (r-l)//2
 
-            if nums[low] < nums[high]:
-                return nums[low]
+            if nums[l] < nums[r]:
+                return nums[l]
 
-            if nums[mid] < nums[low]:
-                high = mid
-            elif nums[mid] > nums[high]:
-                low = mid + 1
+            if nums[mid] < nums[l]:
+                r = mid
+            elif nums[mid] > nums[r]:
+                l = mid + 1
+
+        return nums[l]
     
-        return nums[low]
 
 
 
@@ -29,25 +30,3 @@ class Solution:
 
 
 
-
-
-
-        
-        # low = 0
-        # high = len(nums) - 1
-
-        # while low < high:
-        #     if nums[low] < nums[high]:
-        #         return nums[low]
-
-        #     mid = low + (high-low) // 2
-
-        #     if nums[mid] < nums[low]:
-        #         high = mid 
-        #     elif nums[mid] > nums[high]:
-        #         low = mid + 1
-
-        # return nums[low]
-
-        # time O(logn) space O(1)
-        
