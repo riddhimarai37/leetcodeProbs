@@ -1,25 +1,23 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        if len(nums) == 1:
-            return -1 if nums[0] != target else 0
+
         l = 0
         r = len(nums) - 1
 
-        while l < r:
+        while l <= r:
             mid = l + (r-l)//2
 
-            if nums[l] == target: return l
-            if nums[r] == target: return r
-            if nums[mid] == target: return mid
+            if nums[mid] == target: 
+                return mid
 
             # find sorted portion
-            if nums[l] < nums[mid]:
-                if nums[l] < target and nums[mid] > target: 
+            if nums[l] <= nums[mid]:
+                if nums[l] <= target and nums[mid] >= target: 
                     r = mid
                 else:
                     l = mid + 1
             else:
-                if nums[r] > target and nums[mid] < target:
+                if nums[r] >= target and nums[mid] <= target:
                     l = mid + 1
                 else:
                     r = mid
