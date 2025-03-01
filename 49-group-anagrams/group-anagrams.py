@@ -13,10 +13,10 @@ class Solution:
 
         res = []
 
-        for curr in hash_map:
-            res.append(hash_map[curr])
+        # for curr in hash_map:
+        #     res.append(hash_map[curr])
 
-        return res
+        return list(hash_map.values())
 
 
             
